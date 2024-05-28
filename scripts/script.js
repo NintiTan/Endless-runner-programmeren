@@ -1,11 +1,23 @@
 console.log("Script running...")
 
-
-// speler:
+// variabelen
 
 let spelerPositieX = 10
 let spelerPositieY = 43
-let speler = document.querySelector("img")
+const speler = document.querySelector("img")
+const obstakelContainer = document.querySelector(".obstakels")
+let obstakels = [];
+const banen = ['23%', '43%', '63%'];
+let gameover = false
+const scoreGameOver = document.querySelector("h2")
+const schermGameOver = document.querySelector(".gameover")
+const spelScherm =  document.querySelector(".spel")
+const scoreTeller = document.querySelector("h1");
+let score = 0;
+const herlaadKnop = document.querySelector("button")
+
+
+// functies
 
 function updateSpelerPositie() {
     speler.style.left = spelerPositieX + "%"
@@ -27,15 +39,6 @@ function veranderSpelerPositie(event) {
 
     updateSpelerPositie();
 }
-
-document.addEventListener('keydown', veranderSpelerPositie);
-
-
-// obstakels
-
-obstakelContainer = document.querySelector(".obstakels")
-let obstakels = [];
-const banen = ['23%', '43%', '63%'];
 
 function maakObstakel() {
     let baanEen, baanTwee;
@@ -78,14 +81,6 @@ function genereerObstakels() {
 
 genereerObstakels();
 
-
-// collision + game over
-
-let gameover = false
-let scoreGameOver = document.querySelector("h2")
-let schermGameOver = document.querySelector(".gameover")
-let spelScherm =  document.querySelector(".spel")
-
 function updateHitboxPositie() {
     const spelerHitbox = speler.getBoundingClientRect(); // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
 
@@ -107,12 +102,6 @@ setInterval(() => {
     updateHitboxPositie();
 }, 100)
 
-
-// Score teller
-
-let scoreTeller = document.querySelector("h1");
-let score = 0;
-
 function verhoogScore() {
     score += 1; 
     updateScore(); 
@@ -131,16 +120,16 @@ function stopScoreInterval() {
 
 startScoreInterval();
 
-
-// opnieuw spelen
-
-const herlaadKnop = document.querySelector("button")
-
 function herlaadPagina() {
     location.reload()
 }
 
+
+// event linteners
+
 herlaadKnop.addEventListener('click', herlaadPagina)
+
+document.addEventListener('keydown', veranderSpelerPositie);
 
 
 

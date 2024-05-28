@@ -21,6 +21,10 @@ h1 {
     padding-top: 2%;
 }
 
+p {
+    text-align: center;
+}
+
 .spel img {
     left: 10%;
     bottom: 40%;
