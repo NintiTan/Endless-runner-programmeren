@@ -69,6 +69,17 @@ p {
     background-color: rgb(255, 234, 181);
 }
 
+.muziekknop {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 5em;
+    height: 5em;
+    background-image: url(../images/muziekknop.png);
+
+}
+
 .spel {
     opacity: 100;
 }
+

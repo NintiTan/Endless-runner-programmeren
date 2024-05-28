@@ -14,7 +14,10 @@ const schermGameOver = document.querySelector(".gameover")
 const spelScherm =  document.querySelector(".spel")
 const scoreTeller = document.querySelector("h1");
 let score = 0;
-const herlaadKnop = document.querySelector("button")
+const herlaadKnop = document.querySelector(".probeeropnieuw")
+const achtergrondMuziek =  document.querySelector(".achtergrondmuziek")
+const muziekKnop = document.querySelector(".muziekknop")
+let speeltMuziek = false
 
 // functies
 
@@ -131,6 +134,29 @@ function herlaadPagina() {
     location.reload()
 }
 
+function speelMuziek() {
+    achtergrondMuziek.play();
+    console.log("Muziek speelt")
+    muziekKnop.textContent = "Stop muziek"
+    speeltMuziek = true
+}
+
+function stopMuziek() {
+    achtergrondMuziek.pause();
+    console.log("Muziek stopt")
+    muziekKnop.textContent = "Start muziek"
+    speeltMuziek = false
+}
+
+function muziekAanUit() {
+    if (speeltMuziek === false) {
+        speelMuziek();
+    } else if (speeltMuziek === true) {
+        stopMuziek();
+    }
+}
+
+
 genereerObstakels();
 
 startScoreInterval();
@@ -139,7 +165,9 @@ startScoreInterval();
 
 herlaadKnop.addEventListener('click', herlaadPagina)
 
-document.addEventListener('keydown', veranderSpelerPositie);
+document.addEventListener('keydown', veranderSpelerPositie)
+
+muziekKnop.addEventListener('click', muziekAanUit)
 
 
 
