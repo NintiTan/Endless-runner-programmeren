@@ -16,14 +16,15 @@ const scoreTeller = document.querySelector("h1");
 let score = 0;
 const herlaadKnop = document.querySelector("button")
 
-
 // functies
 
+// Update de positie van de speler op het scherm
 function updateSpelerPositie() {
     speler.style.left = spelerPositieX + "%"
     speler.style.bottom = spelerPositieY + "%"
 }
 
+// Pas de positie van de speler aan afhankelijk van of er op W of S wordt gedrukt
 function veranderSpelerPositie(event) {
     if(event.key == "w") { // https://www.toptal.com/developers/keycode/table
         if(spelerPositieY < 63){
@@ -40,6 +41,7 @@ function veranderSpelerPositie(event) {
     updateSpelerPositie();
 }
 
+// Maak een obstakel aan op een willekeurige baan
 function maakObstakel() {
     let baanEen, baanTwee;
     do {
@@ -73,14 +75,14 @@ function maakObstakel() {
 
 } 
 
+// Genereer obstakels elke 1000ms
 function genereerObstakels() {
     setInterval(() => {
         maakObstakel();
     }, 1000)
 } 
 
-genereerObstakels();
-
+// Update de positie van de hitbox van de speler en obstakels en check of ze elkaar raken
 function updateHitboxPositie() {
     const spelerHitbox = speler.getBoundingClientRect(); // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
 
@@ -98,34 +100,42 @@ function updateHitboxPositie() {
     });
 }
 
+// Update de positie van de hitbox van de speler en obstakels elke 100ms
 setInterval(() => {
     updateHitboxPositie();
 }, 100)
 
+// Verhoog score met 1 en update de scoreteller
 function verhoogScore() {
     score += 1; 
     updateScore(); 
 }
 
+// Update de scoreteller
 function updateScore() {
     scoreTeller.textContent = "Score: " + score;
 }
+
+// Start de score interval
 function startScoreInterval() {
     scoreInterval = setInterval(verhoogScore, 500);
 }
 
+// Stop de score interval
 function stopScoreInterval() {
     clearInterval(scoreInterval);
 }
 
-startScoreInterval();
-
+// herlaad de pagina
 function herlaadPagina() {
     location.reload()
 }
 
+genereerObstakels();
 
-// event linteners
+startScoreInterval();
+
+// event listeners
 
 herlaadKnop.addEventListener('click', herlaadPagina)
 
