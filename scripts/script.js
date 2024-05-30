@@ -27,7 +27,7 @@ function updateSpelerPositie() {
     speler.style.bottom = spelerPositieY + "%"
 }
 
-// Pas de positie van de speler aan afhankelijk van of er op W of S wordt gedrukt
+// Past de positie van de speler aan afhankelijk van of er op W of S wordt gedrukt
 function veranderSpelerPositie(event) {
     if(event.key == "w") { // https://www.toptal.com/developers/keycode/table
         if(spelerPositieY < 63){
@@ -44,7 +44,7 @@ function veranderSpelerPositie(event) {
     updateSpelerPositie();
 }
 
-// Maak een obstakel aan op een willekeurige baan
+// Maakt een obstakel aan op een willekeurige baan
 function maakObstakel() {
     let baanEen, baanTwee;
     do {
@@ -78,7 +78,7 @@ function maakObstakel() {
 
 } 
 
-// Genereer obstakels elke 1000ms
+// Genereert obstakels elke 1000ms
 function genereerObstakels() {
     setInterval(() => {
         maakObstakel();
@@ -108,7 +108,7 @@ setInterval(() => {
     updateHitboxPositie();
 }, 100)
 
-// Verhoog score met 1 en update de scoreteller
+// Verhoogt score met 1 en update de scoreteller
 function verhoogScore() {
     score += 1; 
     updateScore(); 
@@ -124,16 +124,17 @@ function startScoreInterval() {
     scoreInterval = setInterval(verhoogScore, 500);
 }
 
-// Stop de score interval
+// Stopt de score interval
 function stopScoreInterval() {
     clearInterval(scoreInterval);
 }
 
-// herlaad de pagina
+// herlaadt de pagina
 function herlaadPagina() {
     location.reload()
 }
 
+// Speelt muziek af
 function speelMuziek() {
     achtergrondMuziek.play(); // https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio
     console.log("Muziek speelt")
@@ -141,6 +142,7 @@ function speelMuziek() {
     speeltMuziek = true
 }
 
+// Stopt muziek
 function stopMuziek() {
     achtergrondMuziek.pause();
     console.log("Muziek stopt")
@@ -148,6 +150,7 @@ function stopMuziek() {
     speeltMuziek = false
 }
 
+// Start of stopt muziek afhankelijk van of muziek speelt
 function muziekAanUit() {
     if (speeltMuziek === false) {
         speelMuziek();
