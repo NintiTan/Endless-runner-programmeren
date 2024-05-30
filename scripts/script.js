@@ -135,7 +135,7 @@ function herlaadPagina() {
 }
 
 function speelMuziek() {
-    achtergrondMuziek.play();
+    achtergrondMuziek.play(); // https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio
     console.log("Muziek speelt")
     muziekKnop.textContent = "Stop muziek"
     speeltMuziek = true
@@ -155,7 +155,6 @@ function muziekAanUit() {
         stopMuziek();
     }
 }
-
 
 genereerObstakels();
 
